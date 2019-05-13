@@ -12,6 +12,8 @@
         <title>New Post</title>
     </head>
     <body>
+        <a href="posts.php">List Posts</a>
+        <hr>
         <h2>Create New Post</h2>
         <form action="doPost.php" method="post">
             <div class="form-group">
