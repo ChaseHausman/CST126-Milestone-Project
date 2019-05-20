@@ -5,6 +5,9 @@
  * Date: 4/7/19
  * Time: 9:03 PM
  */
+
+require_once "../app.php";
+
 ?>
 
 <html>
@@ -12,6 +15,9 @@
     <title>Register</title>
 </head>
 <body>
+    <?php if($message !== null) { ?>
+        <div class="alert-message"><?php echo $message; ?></div>
+    <?php } ?>
     <h1>Register New Account</h1>
     <form action="doRegister.php" method="post">
         <div class="form-group">

@@ -5,6 +5,9 @@
  * Date: 4/21/19
  * Time: 11:36 PM
  */
+
+require_once "../app.php";
+
 ?>
 
 <html>
@@ -12,6 +15,9 @@
         <title>New Post</title>
     </head>
     <body>
+        <?php if($message !== null) { ?>
+            <div class="alert-message"><?php echo $message; ?></div>
+        <?php } ?>
         <a href="posts.php">List Posts</a>
         <hr>
         <h2>Create New Post</h2>

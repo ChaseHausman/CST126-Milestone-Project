@@ -6,9 +6,9 @@
  * Time: 9:22 PM
  */
 
-$connection = new mysqli("localhost:8889", "root", "root", "milestone");
+$GLOBALS['connection'] = new mysqli("localhost:8889", "root", "root", "milestone");
 
-if(!$connection) {
+if(!$GLOBALS['connection']) {
     echo "Could not connect to database.";
     die;
 }

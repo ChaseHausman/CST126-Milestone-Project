@@ -6,7 +6,12 @@
  * Time: 10:02 PM
  */
 
-require_once "../database.php";
+require_once "../app.php";
+
+if(!isset($_GET['q']) || $_GET['q'] == "") {
+    echo "Sorry, you can't search for nothing.";
+    die();
+}
 
 $search = $_GET['q'];
 
@@ -26,6 +31,7 @@ foreach($results as $result) {
         'id' => $result['id'],
         'title' => $result['title'],
         'updated_at' => $result['updated_at'],
+        'deleted_at' => $result['deleted_at']
     ];
 }
 
@@ -49,6 +55,12 @@ foreach($results as $result) {
                     <td><?php echo $post['id']; ?></td>
                     <td><a href="edit.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></td>
                     <td><?php echo $post['updated_at']; ?></td>
+                    <td>
+                        <a href="<?php echo "{$App['home_url']}/view.php?id={$post['id']}"; ?>">View</a>
+                        <?php if(authCheck()) { ?>
+                            <a href="<?php echo "{$App['home_url']}/edit.php?id={$post['id']}" ?>">Edit</a>
+                        <?php } ?>
+                    </td>
                 </tr>
             <?php } ?>
         </table>

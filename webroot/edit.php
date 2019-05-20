@@ -6,10 +6,15 @@
  * Time: 11:52 PM
  */
 
-require_once "../database.php";
+require_once "../app.php";
 
 if(!isset($_GET['id']) || $_GET['id'] == null || !is_numeric($_GET['id'])) {
     echo "Error 404 - Could not find an ID to search for.";
+    die();
+}
+
+if(!authCheck()) {
+    echo "Error 404 - Could not find this for you.";
     die();
 }
 
@@ -25,6 +30,9 @@ $result = $connection->query($query)->fetch_assoc();
         <title>Edit <?php echo $result['title']; ?></title>
     </head>
     <body>
+        <?php if($message !== null) { ?>
+            <div class="alert-message"><?php echo $message; ?></div>
+        <?php } ?>
         <a href="posts.php">View Posts</a>
         <a href="post.php">New Post</a>
         <h2>Edit <?php echo $result['title']; ?></h2>

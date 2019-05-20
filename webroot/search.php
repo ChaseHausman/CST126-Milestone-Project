@@ -12,6 +12,9 @@
         <title>Posts</title>
     </head>
     <body>
+        <?php if($message !== null) { ?>
+            <div class="alert-message"><?php echo $message; ?></div>
+        <?php } ?>
         <a href="posts.php">Posts</a>
         <hr>
         <h2>Search</h2>

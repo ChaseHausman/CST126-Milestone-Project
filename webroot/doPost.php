@@ -6,18 +6,29 @@
  * Time: 11:43 PM
  */
 
-require "../database.php";
+require "../app.php";
+
+$validation = true;
+$errors = "";
 
 if($_POST['title'] == null || $_POST['title'] == "") {
-    echo "Title is a required field.";
+    $errors = " Title is a required field. ";
+    $validation = false;
 } else {
-    $title = $_POST['title'];
+    $title .= $_POST['title'];
 }
 
 if($_POST['body'] == null || $_POST['body'] == "") {
-    echo "Some Content is required to post.";
+    $errors .= " Some Content is required to post. ";
+    $validation = false;
 } else {
     $body = $_POST['body'];
+}
+
+if(!$validation) {
+    $_SESSION['message'] = trim($errors);
+    redirectBack();
+    die();
 }
 
 $query = "INSERT INTO posts (title, category_id, author_id, body) VALUES ('{$title}', 0, 0, '{$body}');";
@@ -25,7 +36,11 @@ $query = "INSERT INTO posts (title, category_id, author_id, body) VALUES ('{$tit
 $result = $connection->query($query);
 
 if($result) {
-    echo "Successfully saved post.";
+    $_SESSION['message'] = "Successfully saved post.";
+    redirect("posts.php");
+    die();
 } else {
-    echo "There was a problem saving your post.";
+    $_SESSION['message'] = "There was a problem saving your post.";
 }
+
+redirectBack();
