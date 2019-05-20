@@ -6,7 +6,7 @@
  * Time: 9:13 PM
  */
 
-require "../database.php";
+require "../app.php";
 
 // Created a non-readable version of the password.
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -18,7 +18,9 @@ $results = $connection->query($query);
 $connection->close();
 
 if($results) {
-    echo "You have successfully been registered.";
+    $_SESSION['message'] = "You have successfully been registered.";
 } else {
-    echo "There was an error registering your account.";
+    $_SESSION['message'] = "There was an error registering your account.";
 }
+
+redirectBack();

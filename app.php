@@ -7,7 +7,7 @@
  */
 
 $App = [
-    'home_url' => "http://localhost:8888/milestone/webroot",
+    'home_url' => "http://cst126.chaseh.net",
 ];
 
 require_once "database.php";
